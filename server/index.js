@@ -29,16 +29,31 @@ app.get('/banco', function (req, res) {
     })
 })
 
-app.get('/insere-banco', function (req, res) {
+app.post('/insere-banco', function (req, res) {
     var id = req.body.id;
     var nome = req.body.nome;
     var descricao = req.body.descricao
-    connection.query('INSERT INTO express_teste (id, nome, descricao) VALUES (' + id + ', "' + nome + '" ,' + '"' + descricao + '"' + ')',
+    var valor = req.body.valor
+    connection.query('INSERT INTO express_teste (id, nome, descricao, valor) VALUES (' + id + ', "' + nome + '" ,' + '"' + descricao + '",' + valor + ')',
         function (err, result) {
             if (err) throw err;
-            res.send('User added to database');
+            console.log([{
+                id: id,
+                nome: nome,
+                descricao: descricao,
+                valor: valor
+            }])
+            res.send('Dado adicionado com sucesso');
         }
     )
+})
+
+app.get('/pega-dados-banco', function (req, res) {
+    connection.query('SELECT * FROM express_teste', function (err, rows, fields) {
+        if (err) throw err
+        console.log(rows)
+        res.send(rows)
+    })
 })
 
 app.get('/', (req, res) => res.send('Hello World!'))

@@ -16,11 +16,13 @@
 
 <script>
     $(document).ready(function(){
-    var user,password;
+    var id,nome, descricao, valor;
         $("#submit").click(function(){
-            user=$("#user").val();
-            pass=$("#password").val();
-            $.post("http://127.0.0.1:3000/insere-banco",{user: user,password: password}, function(data){
+            id=$("#id").val();
+            nome=$("#nome").val();
+            descricao=$("#descricao").val();
+            valor=$("#valor").val();
+            $.post("http://127.0.0.1:3000/insere-banco",{id: id,nome: nome, descricao: descricao, valor:valor}, function(data){
             if(data==='done')
               {
                 alert("login success");
@@ -33,9 +35,29 @@
 
 <body>
     <h1>Hello people !</h1>
-    <input type="TEXT" id="user" size="40"><br>
-    <input type="password" id="password" size="40"><br>
-    <input type="button" id="submit" value="Submit">
+    <input type="number" id="id"><br>
+    <input type="text" id="nome"><br>
+    <input type="text" id="descricao"><br>
+    <input type="number" id="valor"><br>
+    <input type="button" id="submit" onclick="pusha()" value="Submit">
+
+    <section>
+        <h1>Dados</h1>
+        <div class="container">
+
+        </div>
+    </section>
 </body>
+
+<script>
+    function pusha() {
+        var http = new XMLHttpRequest;
+        http.open('GET', 'http://127.0.0.1:3000/pega-dados-banco')
+        http.onload = function () {
+            console.log(this.response)
+        }
+        http.send()
+    }
+</script>
 
 </html>
