@@ -39,13 +39,17 @@
     <input type="text" id="nome"><br>
     <input type="text" id="descricao"><br>
     <input type="number" id="valor"><br>
-    <input type="button" id="submit" onclick="pusha()" value="Submit">
+    <input type="button" id="submit" value="Submit">
+    <input type="button" onclick="pusha()" value="Exibe">
 
     <section>
         <h1>Dados</h1>
-        <div class="container">
-
-        </div>
+        <table>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+        </table>
     </section>
 </body>
 
@@ -54,7 +58,16 @@
         var http = new XMLHttpRequest;
         http.open('GET', 'http://127.0.0.1:3000/pega-dados-banco')
         http.onload = function () {
-            console.log(this.response)
+            let dado = JSON.parse(this.response)
+            dado.forEach(dados => {
+                tr = $(' <tr/> ');
+                tr.append("<td>" + dados.id + "</td>");
+                tr.append("<td>" + dados.nome + "</td>");
+                tr.append("<td>" + dados.descricao + "</td>");
+                tr.append("<td>" + dados.valor + "</td>");
+
+                $('table').append(tr);
+            });
         }
         http.send()
     }
