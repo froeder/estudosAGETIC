@@ -91,4 +91,13 @@ app.get('/pessoa', function (req, res) {
     res.send(pessoa)
 })
 
+app.get('/apagar', function (req, res) {
+    connection.query('DELETE * FROM express_teste', function (err, rows, fields) {
+        if (err) throw err
+        console.log(rows)
+        console.log('APAGUEI')
+        res.send(rows)
+    })
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

@@ -41,6 +41,7 @@
     <input type="number" id="valor"><br>
     <input type="button" id="submit" value="Submit">
     <input type="button" onclick="pusha()" value="Exibe">
+    <input type="button" onclick="apagar()" value="Apagar">
 
     <section>
         <h1>Dados</h1>
@@ -70,6 +71,12 @@
             });
         }
         http.send()
+    }
+
+    function apagar() {
+        console.log('apaguei')
+        var http = new XMLHttpRequest;
+        http.open('GET', 'http://127.0.0.1:3000/apagar')
     }
 </script>
 
