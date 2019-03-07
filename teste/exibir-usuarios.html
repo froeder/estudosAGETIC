@@ -25,12 +25,18 @@
         <div style="margin-top:1em">
             <input class="btn btn-info" type="button" value="Voltar" id="voltar" onclick="voltar()">
         </div>
+        <br>
+        <br>
         <div>
             <table>
                 <th>ID</th>
                 <th>Nome</th>
-                <th>Descrição</th>
-                <th>Valor</th>
+                <th>Email</th>
+                <th>Senha</th>
+                <th>Data Nascimento</th>
+                <th>Profissão</th>
+                <th>Instituição</th>
+                <th>Ação</th>
             </table>
         </div>
     </section>
@@ -50,7 +56,11 @@
             tr.append("<td>" + dados.senha + "</td>");
             tr.append(
                 "<td>" + dados.data_nascimento + "</td>");
-
+            tr.append(
+                "<td>" + dados.profissao + "</td>");
+            tr.append(
+                "<td>" + dados.instituicao + "</td>");
+            tr.append('<td> <span class="btn btn-primary" >Editar</span> </td>')
             $('table').append(tr);
         });
     }

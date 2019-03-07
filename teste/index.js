@@ -4,11 +4,15 @@ function adicionar() {
     email = $("#email").val();
     senha = $("#senha").val();
     data_nascimento = $("#data_nascimento").val()
+    instituicao = $("#instituicao").val();
+    profissao = $("#profissao").val();
     $.post("http://127.0.0.1:3001/adicionar-usuario", {
         nome: nome,
         email: email,
         senha: senha,
-        data_nascimento: data_nascimento
+        data_nascimento: data_nascimento,
+        instituicao: instituicao,
+        profissao: profissao
     }, function (data) {
         if (data === 'done') {
             alert("login success");
@@ -25,6 +29,8 @@ function limpar() {
     $("#email").val('')
     $("#senha").val('')
     $("#data_nascimento").val('')
+    $("#instituicao").val('')
+    $("#profissao").val('')
 }
 
 function exibir() {

@@ -31,8 +31,10 @@ app.post('/adicionar-usuario', function (req, res) {
     var email = req.body.email
     var senha = req.body.senha
     var data_nascimento = req.body.data_nascimento
+    var instituicao = req.body.instituicao
+    var profissao = req.body.profissao
 
-    connection.query("INSERT INTO `usuarios`(`id`, `nome`,`email`, `senha`, `data_nascimento`) VALUES ('" + id + "','" + nome + "','" + email + "','" + senha + "','" + data_nascimento + "')",
+    connection.query("INSERT INTO `usuarios`( `nome`,`email`, `senha`, `data_nascimento`, `instituicao`, `profissao`) VALUES ('" + nome + "','" + email + "','" + senha + "','" + data_nascimento + "','" + instituicao + "','" + profissao + "')",
         function (err, result) {
             if (err) throw err;
             console.log([{
@@ -58,7 +60,7 @@ app.get('/visualizar-usuario', function (req, res) {
     console.log('Visualizar usuário')
 })
 
-app.put('atualizar-usuario', function (req, res) {
+app.put('/atualizar-usuario', function (req, res) {
     console.log('Atualizar usuário')
 })
 
