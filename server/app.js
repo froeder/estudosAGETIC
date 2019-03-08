@@ -70,5 +70,17 @@ app.delete('/deletar-usuario', function (req, res) {
     console.log('Deletar usuário')
 })
 
+app.post('/login', function (req, res) {
+    var email = req.body.email
+    var senha = req.body.senha
+
+    connection.query("SELECT * FROM usuarios WHERE email = '" + email + "'", function (err, rows, fields) {
+        if (err) throw err
+        console.log(rows)
+
+    })
+
+    res.send('LOGIN')
+})
 
 app.listen(port, () => console.log(`Server runing on port ${port}`));

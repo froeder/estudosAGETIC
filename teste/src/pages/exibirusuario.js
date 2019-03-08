@@ -1,3 +1,3 @@
 function voltar() {
-    window.location.replace('index.html')
+    window.location.replace('cadastrar_usuario.html')
 }
