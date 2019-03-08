@@ -17,21 +17,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <title>Document</title>
+    <title>Index </title>
 </head>
 
-<body>
+<body style="background-color: aquamarine">
     <section>
         <div class="container">
-            <br>
-            Nome: <input type="text" name="nome" id="nome"> <br>
-            Email: <input type="text" name="email" id="email"> <br>
-            Senha: <input type="password" name="senha" id="senha"> <br>
-            Data Nascimento: <input type="text" name="data_nascimento" id="data_nascimento"> <br>
-            Instituição: <input type="text" name="instituicao" id="instituicao"> <br>
-            Profissão: <input type="text" name="profissao" id="profissao"> <br>
-            <input class="btn btn-success" type="button" value="Salvar" id="salvar" onclick="adicionar()">
-            <input class="btn btn-info" type="button" value="Exibir" id="exibir" onclick="exibir()">
+            <div class="card" id="card">
+                <h3>Login</h3>
+                <div class="card-body">
+                    <div>
+                        Email: <input type="text" name="email" id="email"> <br>
+                        Senha: <input type="password" name="senha" id="senha"> <br>
+                    </div>
+                    <br>
+                    <input class="btn btn-success" type="button" value="Login" id="Login" onclick="login()">
+                    <input class="btn btn-info" type="button" value="Cadastrar" id="Cadastrar" onclick="cadastrar()">
+                </div>
+            </div>
         </div>
     </section>
 </body>

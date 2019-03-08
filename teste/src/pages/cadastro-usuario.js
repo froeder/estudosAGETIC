@@ -21,6 +21,7 @@ function adicionar() {
 
     this.limpar()
     alert('Salvou')
+
 }
 
 function limpar() {
@@ -35,4 +36,8 @@ function limpar() {
 
 function exibir() {
     window.location.replace('exibir-usuarios.html')
+}
+
+function voltar() {
+    window.location.replace('index.html')
 }

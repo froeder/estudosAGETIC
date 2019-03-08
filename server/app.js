@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const bodyParser = require("body-parser");
+const uuid = require("uuid");
 const port = 3001
 
 app.use(cors())
@@ -26,7 +27,7 @@ app.get('/', function (req, res) {
 })
 
 app.post('/adicionar-usuario', function (req, res) {
-    var id = 1
+    var id = uuid()
     var nome = req.body.nome
     var email = req.body.email
     var senha = req.body.senha
@@ -34,10 +35,11 @@ app.post('/adicionar-usuario', function (req, res) {
     var instituicao = req.body.instituicao
     var profissao = req.body.profissao
 
-    connection.query("INSERT INTO `usuarios`( `nome`,`email`, `senha`, `data_nascimento`, `instituicao`, `profissao`) VALUES ('" + nome + "','" + email + "','" + senha + "','" + data_nascimento + "','" + instituicao + "','" + profissao + "')",
+    connection.query("INSERT INTO `usuarios`(`id`,  `nome`,`email`, `senha`, `data_nascimento`, `instituicao`, `profissao`) VALUES ('" + id + "','" + nome + "','" + email + "','" + senha + "','" + data_nascimento + "','" + instituicao + "','" + profissao + "')",
         function (err, result) {
             if (err) throw err;
             console.log([{
+                id: id,
                 nome: nome,
                 email: email,
                 senha: senha,
