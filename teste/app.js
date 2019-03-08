@@ -2,7 +2,8 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const bodyParser = require("body-parser");
-const port = 3001
+const port = 3001;
+const uuidv1 = require('uuid/v1');
 
 app.use(cors())
 app.use(bodyParser.json());
@@ -29,7 +30,7 @@ app.get('/', function (req, res) {
 })
 
 app.post('/adicionar-usuario', function (req, res) {
-    var id = 1
+    var id = uuidv1()
     var nome = req.body.nome
     var email = req.body.email
     var senha = req.body.senha
@@ -56,15 +57,24 @@ app.post('/adicionar-usuario', function (req, res) {
         collection.insertOne(dado)
         client.close();
     });
+    res.send('OK')
 
 })
 
 app.get('/exibir-usuarios', function (req, res) {
-    connection.query('SELECT * FROM usuarios', function (err, rows, fields) {
-        if (err) throw err
-        console.log(rows)
-        res.send(rows)
-    })
+    const uri = "mongodb+srv://admin:admin@cluster0-pmvpc.gcp.mongodb.net/test?retryWrites=true";
+    const client = new MongoClient(uri, {
+        useNewUrlParser: true
+    });
+    client.connect(err => {
+        client.db("test").collection("usuarios").find({}).toArray(function (error, documents) {
+            if (err) throw error;
+            console.log(documents)
+            res.send(documents);
+        });
+
+        client.close()
+    });
 })
 
 app.get('/visualizar-usuario', function (req, res) {
