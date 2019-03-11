@@ -39,5 +39,5 @@ function exibir() {
 }
 
 function voltar() {
-    window.location.replace('index.html')
+    window.location.replace('sigin.html')
 }

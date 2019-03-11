@@ -1,9 +1,11 @@
 function confereSenha(senha_cliente, senha_servidor) {
     if (senha_cliente == senha_servidor) {
         console.log('Igual')
+        window.location.replace('../index.html')
     } else {
         console.log('Diferentes')
         alert('Senha Incorreta')
+        this.limparSenha()
     }
 }
 
@@ -27,4 +29,8 @@ function login() {
 
 function cadastrar() {
     window.location.replace('cadastrar_usuario.html')
+}
+
+function limparSenha() {
+    let senha = $("#senha").val('')
 }
