@@ -82,8 +82,11 @@ app.put("/atualizar-usuario", function (req, res) {
     console.log("Atualizar usuário");
 });
 
-app.delete("/deletar-usuario", function (req, res) {
-    console.log("Deletar usuário");
+app.post("/deletar-usuario", function (req, res) {
+    var email = req.body.email;
+    connection.query("DELETE * FROM usuarios WHERE email = '" + email + "", function (err, row, field) {
+        if (err) throw err
+    })
 });
 
 app.post("/login", function (req, res) {
@@ -91,7 +94,7 @@ app.post("/login", function (req, res) {
     var senha = req.body.senha;
 
     connection.query(
-        "SELECT * FROM usuarios WHERE email = '" + email + "'",
+        "SELECT * FROM usuarios WHERE email LIKE '" + email + "'",
         function (err, rows, fields) {
             if (err) {
                 throw err;

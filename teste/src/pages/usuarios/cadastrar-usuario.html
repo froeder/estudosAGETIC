@@ -15,19 +15,30 @@
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="index.js"></script>
-    <title>Index</title>
+    <script src="usuarios.js"></script>
+    <title>Cadastrar</title>
 </head>
 
 <body>
     <section class="container">
-        <div class="content">
-            <h1>Logado</h1>
-            <input class="btn btn-danger" type="button" value="Sair" onclick="sair()" />
-            <br />
-            <br />
-            <input class="btn btn-info" type="button" value="Usuários" onclick="listarUsuarios()" />
+        <h1>Adicionar Usuário</h1>
+        <br>
+        <br>
+        <br>
+        <div class="card-body" style="box-shadow:0px 0px 10px black">
+            <form class="text-center">
+                Nome: <input type="text" name="nome" id="nome"> <br><br>
+                Email: <input type="text" name="email" id="email"> <br><br>
+                Senha: <input type="password" name="senha" id="senha"> <br><br>
+                Data Nascimento: <input type="date" name="data_nascimento" id="data_nascimento"> <br><br>
+                Instituição: <input type="text" name="instituicao" id="instituicao"> <br><br>
+                Profissão: <input type="text" name="profissao" id="profissao"> <br><br>
+            </form>
         </div>
+        <br>
+        <br>
+        <input class="btn btn-info" type="button" value="Voltar" onclick="voltarUsuarios()">
+        <input class="btn btn-success" type="button" value="Adicionar" onclick="cadastrarUsuario()" style="margin-left:1em">
     </section>
 </body>
 

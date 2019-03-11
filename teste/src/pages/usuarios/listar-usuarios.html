@@ -16,7 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="usuarios.js"></script>
-    <title>Document</title>
+    <title>Listar</title>
 </head>
 
 <body>
@@ -25,17 +25,22 @@
         <br>
         <br>
         <br>
-        <table class="table table-ripped">
+        <table id="usuarios" class="table table-ripped">
             <th>Nome</th>
             <th>Email</th>
             <th>Senha</th>
             <th>Data Nascimento</th>
             <th>Profissão</th>
             <th>Instituição</th>
-            <th>Ação</th>
+            <th>Editar</th>
+            <th>Excluir</th>
         </table>
 
-        <input class="btn btn-info" type="button" value="Voltar" onclick="voltar()">
+        <div class="row">
+            <input class="btn btn-info" type="button" value="Voltar" onclick="voltar()">
+            <input class="btn btn-success" type="button" value="Novo" onclick="adicionarUsuario()" style="margin-left:1em">
+
+        </div>
     </section>
 </body>
 
@@ -53,7 +58,10 @@
             tr.append("<td>" + dados.data_nascimento + "</td>");
             tr.append("<td>" + dados.profissao + "</td>");
             tr.append("<td>" + dados.instituicao + "</td>");
-            tr.append('<td> <span class="btn btn-primary" >Editar</span> </td>');
+            tr.append('<td> <span class="btn btn-info" >Editar</span> </td>');
+            tr.append(
+                '<td> <input class="btn btn-danger" type="button" value="Excluir" onclick="excluirUsuario(this)">'
+            );
             $("table").append(tr);
         });
     };
