@@ -48,7 +48,7 @@ app.post('/insere-banco', function (req, res) {
     )
 })
 
-app.get('/pega-dados-banco', function (req, res) {
+app.get('/pega-usuarios', function (req, res) {
     connection.query('SELECT * FROM express_teste', function (err, rows, fields) {
         if (err) throw err
         console.log(rows)

@@ -15,20 +15,49 @@
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="index.js"></script>
+    <script src="usuarios.js"></script>
     <title>Document</title>
 </head>
 
 <body>
     <section class="container">
-        <div class="content">
-            <h1>Logado</h1>
-            <input class="btn btn-danger" type="button" value="Sair" onclick="sair()" />
-            <br />
-            <br />
-            <input class="btn btn-info" type="button" value="Usuários" onclick="listarUsuarios()" />
-        </div>
+        <h1>Usuários</h1>
+        <br>
+        <br>
+        <br>
+        <table class="table table-ripped">
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Senha</th>
+            <th>Data Nascimento</th>
+            <th>Profissão</th>
+            <th>Instituição</th>
+            <th>Ação</th>
+        </table>
+
+        <input class="btn btn-info" type="button" value="Voltar" onclick="voltar()">
     </section>
 </body>
+
+<script>
+    var http = new XMLHttpRequest();
+    http.open("GET", "http://127.0.0.1:3001/exibir-usuarios");
+    http.onload = function () {
+        console.log(this.response);
+        let dado = JSON.parse(this.response);
+        dado.forEach(dados => {
+            tr = $("<tr/>");
+            tr.append("<td>" + dados.nome + "</td>");
+            tr.append("<td>" + dados.email + "</td>");
+            tr.append("<td>" + dados.senha + "</td>");
+            tr.append("<td>" + dados.data_nascimento + "</td>");
+            tr.append("<td>" + dados.profissao + "</td>");
+            tr.append("<td>" + dados.instituicao + "</td>");
+            tr.append('<td> <span class="btn btn-primary" >Editar</span> </td>');
+            $("table").append(tr);
+        });
+    };
+    http.send();
+</script>
 
 </html>
