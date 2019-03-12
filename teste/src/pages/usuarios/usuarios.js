@@ -66,9 +66,11 @@ function excluirUsuario() {
             $.post("http://127.0.0.1:3001/deletar-usuario", {
                 email: aux
             }, function (data) {
-                if (data === 'done') {
-                    alert("login success");
-                }
+                if (data == 'OK') {
+                    console.log('Deletado')
+                    window.location.reload()
+                } else if (data == 'ERRO')
+                    console.log('Erro ao deletar')
             });
 
         };

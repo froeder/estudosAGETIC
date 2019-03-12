@@ -84,9 +84,16 @@ app.put("/atualizar-usuario", function (req, res) {
 
 app.post("/deletar-usuario", function (req, res) {
     var email = req.body.email;
-    connection.query("DELETE * FROM usuarios WHERE email = '" + email + "", function (err, row, field) {
-        if (err) throw err
+    connection.query("DELETE FROM usuarios WHERE email = '" + email + "'", function (err, row, field) {
+        if (err) {
+            throw err
+            res.send('ERRO')
+        } else {
+            res.send('OK')
+        }
+
     })
+
 });
 
 app.post("/login", function (req, res) {
