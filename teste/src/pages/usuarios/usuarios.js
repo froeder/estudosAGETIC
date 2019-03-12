@@ -59,7 +59,7 @@ function excluirUsuario() {
 
         table.rows[i].onclick = function () {
             //rIndex = this.rowIndex;
-            teste = this.cells[1].innerHTML
+            teste = this.cells[2].innerHTML
             email = teste
             let aux = email
 
@@ -76,5 +76,55 @@ function excluirUsuario() {
         };
 
     }
+
+}
+
+function editarUsuario() {
+    var table = document.getElementById('usuarios');
+    let id = ''
+
+    for (var i = 1; i < table.rows.length; i++) {
+        let teste = id
+
+        table.rows[i].onclick = function () {
+            //rIndex = this.rowIndex;
+            teste = this.cells[0].innerHTML
+            id = teste
+            let aux = id
+
+
+            window.location.replace('editar-usuario.html?id=' + aux + '')
+        };
+
+    }
+}
+
+function atualizarUsuario() {
+    let nome = document.getElementById('nome').value
+    let email = document.getElementById('email').value
+    let senha = document.getElementById('senha').value
+    let instituicao = document.getElementById('instituicao').value
+    let profissao = document.getElementById('profissao').value
+    let data_nascimento = document.getElementById('data_nascimento').value
+
+
+
+    $.ajax({
+        url: 'http://127.0.0.1:3001/editar-usuario',
+        type: 'PUT',
+        data: {
+            nome: nome,
+            email: email,
+            senha: senha,
+            data_nascimento: data_nascimento,
+            instituicao: instituicao,
+            profissao: profissao,
+            id: id
+        },
+        success: function (data) {
+            alert('Alterado com sucesso.');
+            window.location.replace('listar-usuarios.html')
+        }
+    });
 
 }

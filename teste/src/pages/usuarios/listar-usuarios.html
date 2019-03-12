@@ -26,6 +26,7 @@
         <br>
         <br>
         <table id="usuarios" class="table table-ripped">
+            <th>ID</th>
             <th>Nome</th>
             <th>Email</th>
             <th>Senha</th>
@@ -52,13 +53,14 @@
         let dado = JSON.parse(this.response);
         dado.forEach(dados => {
             tr = $("<tr/>");
+            tr.append("<td>" + dados.id + "</td>");
             tr.append("<td>" + dados.nome + "</td>");
             tr.append("<td>" + dados.email + "</td>");
             tr.append("<td>" + dados.senha + "</td>");
             tr.append("<td>" + dados.data_nascimento + "</td>");
             tr.append("<td>" + dados.profissao + "</td>");
             tr.append("<td>" + dados.instituicao + "</td>");
-            tr.append('<td> <span class="btn btn-info" >Editar</span> </td>');
+            tr.append('<td> <span class="btn btn-info" onclick="editarUsuario()">Editar</span> </td>');
             tr.append(
                 '<td> <input class="btn btn-danger" type="button" value="Excluir" onclick="excluirUsuario(this)">'
             );

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="usuarios.js"></script>
+    <title>Editar</title>
+</head>
+
+<body>
+    <section class="container">
+        <h1>Editar Usuário</h1>
+        <br>
+        <br>
+        <br>
+        <div class="card-body" style="box-shadow:0px 0px 10px black">
+            <form class="text-center">
+                Nome: <input type="text" name="nome" id="nome"> <br><br>
+                Email: <input type="text" name="email" id="email"> <br><br>
+                Senha: <input type="password" name="senha" id="senha"> <br><br>
+                Data Nascimento: <input type="text" name="data_nascimento" id="data_nascimento"> <br><br>
+                Instituição: <input type="text" name="instituicao" id="instituicao"> <br><br>
+                Profissão: <input type="text" name="profissao" id="profissao">
+                <div class="invisible">
+                    ID: <input type="text" name="id" id="id"> <br><br>
+                </div>
+            </form>
+        </div>
+        <br>
+        <br>
+        <input class="btn btn-danger" type="button" value="Voltar" onclick="voltarUsuarios()">
+        <input class="btn btn-success" type="button" value="Atualizar" onclick="atualizarUsuario()" style="margin-left:1em">
+    </section>
+</body>
+
+<script>
+    var url_string = window.location.href
+    var url = new URL(url_string);
+    var id = url.searchParams.get("id");
+    console.log(id);
+
+    $.post("http://127.0.0.1:3001/exibir-usuario", {
+        id: id
+    }, function (data) {
+        if (data) {
+            console.log(data)
+            let dado = data[0]
+            console.log('Encontrou')
+            var email = dado.email;
+            var nome = dado.nome;
+            var id = dado.id;
+            var senha = dado.senha;
+            var instituicao = dado.instituicao;
+            var profissao = dado.profissao;
+            var data_nascimento = dado.data_nascimento;
+
+            document.getElementById('nome').value = nome
+            document.getElementById('email').value = email
+            document.getElementById('senha').value = senha
+            document.getElementById('data_nascimento').value = data_nascimento
+            document.getElementById('instituicao').value = instituicao
+            document.getElementById('profissao').value = profissao
+            document.getElementById('id').value = id
+
+        } else if (data == 'ERRO')
+            console.log('Não encontrou')
+    });
+</script>
+
+</html>

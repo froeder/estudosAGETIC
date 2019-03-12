@@ -74,12 +74,47 @@ app.get("/exibir-usuarios", function (req, res) {
     });
 });
 
+app.post("/exibir-usuario", function (req, res) {
+    var id = req.body.id;
+    connection.query("SELECT * FROM usuarios WHERE id = '" + id + "'", function (err, row, field) {
+        if (err) {
+            throw err
+            res.send('ERRO')
+        } else {
+            res.send(row)
+        }
+        console.log(row)
+    })
+
+});
+
 app.get("/visualizar-usuario", function (req, res) {
     console.log("Visualizar usuário");
 });
 
-app.put("/atualizar-usuario", function (req, res) {
-    console.log("Atualizar usuário");
+app.put("/editar-usuario", function (req, res) {
+    var id = req.body.id;
+    var nome = req.body.nome;
+    var email = req.body.email;
+    var senha = req.body.senha;
+    var data_nascimento = req.body.data_nascimento;
+    var instituicao = req.body.instituicao;
+    var profissao = req.body.profissao;
+
+    connection.query(
+        "UPDATE `usuarios` SET id='" + id + "',  nome='" + nome + "',email='" + email + "', senha='" + senha + "', data_nascimento='" + data_nascimento + "', instituicao='" + instituicao + "', profissao='" + profissao + "' where id = '" + id + "' ",
+        function (err, result) {
+            if (err) throw err;
+            console.log([{
+                id: id,
+                nome: nome,
+                email: email,
+                senha: senha,
+                data_nascimento: data_nascimento
+            }]);
+            res.send("Dado alterado com sucesso");
+        }
+    );
 });
 
 app.post("/deletar-usuario", function (req, res) {
@@ -101,7 +136,7 @@ app.post("/login", function (req, res) {
     var senha = req.body.senha;
 
     connection.query(
-        "SELECT * FROM usuarios WHERE email LIKE '" + email + "'",
+        "SELECT * FROM usuarios WHERE email = '" + email + "'",
         function (err, rows, fields) {
             if (err) {
                 throw err;
